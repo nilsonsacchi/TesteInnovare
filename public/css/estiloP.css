@@ -1,0 +1,13 @@
+.container {
+	width: 50%;
+	position: relative;
+}
+	label {display:block;}
+	input {width: 100%;}
+	input,  button {padding: 10px;}
+button {
+	position: absolute;   
+	top: 0; 
+	left: 0;
+}
+input {padding-left: 60px;}
