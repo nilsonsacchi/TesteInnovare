@@ -68,5 +68,20 @@ input::-webkit-input-placeholder {
 
 .cabecalho{
 	display: flex;
-	justify-content: center;
+	justify-content: center;	
+	font-style: oblique;
+}
+
+.pesquisar{
+	display: flex;
+	justify-content: center;	
+}
+
+.principal{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  background-color: #cae8ca;
+  border: 2px solid #4CAF50;
 }
