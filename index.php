@@ -44,11 +44,9 @@ require("include/pesquisaMarvel.php");
 		<div>
 		<?php
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			
-
 			$conteudo = $_POST['consulta'];
 			$cards = array();
-			$cards = Marvel::getMarvel($conteudo);			
+			$cards = Marvel::getMarvel($conteudo);
 			$contador = 0;
 			foreach($cards as $card): ?>
 			<?php if ($contador == 0) {
@@ -60,6 +58,30 @@ require("include/pesquisaMarvel.php");
 				  <div class="w3-container">
 					<h6><?php echo $card->nome ?></h6>
 					<h6><?php echo $card->descricao ?></h6>
+					
+					<!-- inserir os link para mais detalhes -->
+					
+					<?php if (!empty($card->maisDetail) or !empty($card->maisComic) or !empty($card->maisWiki)) { ?> 
+						
+					<div class="w3-dropdown-hover w3-mobile">
+						<button class="w3-button">mais... <i class="fa fa-caret-down"></i></button>
+							<div class="w3-dropdown-content w3-bar-block w3-dark-white">
+								<?php if (!empty($card->maisDetail)) { ?> 
+								<a href="<?php echo $card->maisDetail ?>" target="_blank" class="w3-bar-item w3-button w3-mobile">Detail</a>
+								<?php } ?>
+								
+								<?php if (!empty($card->maisComic)) { ?> 
+								<a href="<?php echo $card->maisComic ?>" target="_blank" class="w3-bar-item w3-button w3-mobile">Comic Link</a>
+								<?php } ?>
+								
+								<?php if (!empty($card->maisWiki)) { ?> 
+								<a href="<?php echo $card->maisWiki ?>" target="_blank" class="w3-bar-item w3-button w3-mobile">Wiki </a>
+								<?php } ?>
+							</div>
+					</div>
+					
+					<?php } ?>
+					
 				  </div>
 				</div>
 			  </div>

@@ -79,9 +79,9 @@ class Marvel{
 			$nome = $itens->name;
 			
 			//Descrição
-			if ($itens->description == "")
+			if (empty($itens->description))
 			{
-				$descricao = "Sem descrição";
+				$descricao = "No omments";
 			}else
 			{
 				$descricao = $itens->description;	
@@ -97,26 +97,21 @@ class Marvel{
 				{
 					$maisDetail = $urlsDetalhes->url;
 				}
-				else{
-					$maisDetail = "";
-				}
 				
 				if ($urlsDetalhes->type == "wiki")
 				{
 					$maisWiki = $urlsDetalhes->url;
-				}
-				else{
-					$maisWiki = "";
 				}
 				
 				if ($urlsDetalhes->type == "comiclink")
 				{
 					$maisComic = $urlsDetalhes->url;
 				}
-				else{
-					$maisComic = "";
-				}
 			}
+			
+			if (!isset($maisDetail)){$maisDetail = "";}
+			if (!isset($maisWiki)){$maisWiki = "";}
+			if (!isset($maisComic)){$maisComic = "";}
 			
 			//Adiciona na class
 			$card = new Cards($nome, $descricao, $imagem, $maisDetail, $maisComic, $maisWiki);
