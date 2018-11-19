@@ -2,12 +2,6 @@
 
 require("include/pesquisaMarvel.php");
 
-//echo "<pre>";
-//var_dump($cards);
-//echo "</pre>";
-
-//die();
-
 ?>
 
 <!DOCTYPE html>
@@ -25,22 +19,23 @@ require("include/pesquisaMarvel.php");
 	<br>
 	<title>Teste Innovare</title>
 	<body>
-		<br>
-		<br>
-		<div class="cabecalho">
-			<h1>Pesquisa de personagens</h1>
-			<br>	
-			<br>	
-		</div>
-		<div class="cabecalho">			
-			<form action="" method="POST">				
-				<div>				
-					<input name="consulta" placeholder="Digite..." type="search" class="form-control">						
-				</div>
-			</form>				
-		</div>
-		<br>
-		<br>
+	<br>
+	<br>
+	<div class="cabecalho">
+		<h1>Pesquisa de personagens</h1>
+		<br>	
+		<br>	
+		<br>	
+	</div>
+	<div class="pesquisar">			
+		<form action="" method="POST">				
+			<div>				
+				<input name="consulta" placeholder="Digite..." type="search" class="form-control">						
+			</div>
+		</form>				
+	</div>
+	<br>
+	<br>
 		<div>
 		<?php
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
