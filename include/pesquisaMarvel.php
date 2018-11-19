@@ -1,34 +1,26 @@
-<!DOCTYPE html>
-	<html lang="pt-br">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	<head>		
-		<script src="public/js/jquery.js"></script>
-		<script src="public/js/bootstrap.min.js"></script> 
-		<script src="public/js/jquery.quicksearch.js"></script>
-		<link rel="stylesheet" href="public/css/botaoVoltar.css">
-	</head>				
-	<br>
-	<br>
-	<title>Teste Innovare</title>
-	<body>
-		<!-- botão com estilo para figuras, não fechei a tag do botão para ter o efeito de clicar em qq card e voltar -->
-		<button type="button" name="" value="" class="css3button" onclick='history.go(-1)'>
-		<br>
-		<br>
-		<br>
-	</body>
-</html>
-
 <?php
 
-	//<input type='button' value='Voltar' onclick='history.go(-1)' />
+class Cards{
+	public $nome;
+	public $descricao;
+	public $imagem;
+	public $maisDetail;
+	public $maisComic;
+	public $maisWiki;
 
-	$conteudo = $_POST['consulta'];
+	public function __construct($nome, $descricao, $imagem, $maisDetail, $maisComic, $maisWiki){
+		$this->nome = $nome;
+		$this->descricao = $descricao;
+		$this->imagem = $imagem;
+		$this->maisDetail = $maisDetail;
+		$this->maisComic = $maisComic;
+		$this->maisWiki = $maisWiki;
+	}
+}	
+		
+class Marvel{
 	
-	pesquisaMarvel($conteudo);
-	
-	
-	function pesquisaMarvel($conteudo)
+	private function getMarvelFromApi($conteudo)
 	{
 		//Define os dados de cabeçalho da requisição
 		$cabecalho = 'Content-Type: application/json';
@@ -45,14 +37,7 @@
 		$ch = curl_init($url);
 		
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-		
-		//Marca que vai enviar por POST(1=SIM), caso tpRequisicao seja igual a "POST"
-		//curl_setopt($ch, CURLOPT_POST, 1);
-		//curl_setopt($ch, CURLOPT_HTTPGET, 1);								
 
-		//Passa o conteúdo para o campo de envio por POST
-		//curl_setopt($ch, CURLOPT_POSTFIELDS, $conteudoAEnviar);
-		
 		$cabecalho = array(
 			'Content-Type: application/json',
 			'X-AUTH-TOKEN: @@@@@@@@@@@@@@@@@@@');
@@ -71,23 +56,75 @@
 		
 		$json = json_decode($resposta);
 		
-		$arr = array();
+		return $json;
+	}
+	
+	public static function getMarvel($conte)
+	{
+		//$conteudo = $_POST['consulta'];
+		
+		//echo $conte;
+		
+		//Chama a api e retorna o json
+		$json = Marvel::getMarvelFromApi($conte);
+		
+		//echo "<pre>";
+		//print_r($json);
+		//echo "</pre>";
+
+		$cardss = array();		
 		foreach($json->data->results as $itens)
 		{
-			//$arr = array("<img src=" . $itens->thumbnail->path . "." . $itens->thumbnail->extension . " float:right width='150px' height='200px' id='centro'>");
-			echo "<img src=" . $itens->thumbnail->path . "." . $itens->thumbnail->extension . " float:right width='150px' height='200px' id='centro'>";
+			//Nome do card
+			$nome = $itens->name;
 			
-			//,"<span>" . $itens->name . "</span>"			
+			//Descrição
+			if ($itens->description == "")
+			{
+				$descricao = "Sem descrição";
+			}else
+			{
+				$descricao = $itens->description;	
+			}
+			
+			//Imagem
+			$imagem = $itens->thumbnail->path . "." . $itens->thumbnail->extension;
+			
+			//Detalhe			
+			foreach ($itens->urls as $urlsDetalhes)
+			{
+				if ($urlsDetalhes->type == "detail")
+				{
+					$maisDetail = $urlsDetalhes->url;
+				}
+				else{
+					$maisDetail = "";
+				}
+				
+				if ($urlsDetalhes->type == "wiki")
+				{
+					$maisWiki = $urlsDetalhes->url;
+				}
+				else{
+					$maisWiki = "";
+				}
+				
+				if ($urlsDetalhes->type == "comiclink")
+				{
+					$maisComic = $urlsDetalhes->url;
+				}
+				else{
+					$maisComic = "";
+				}
+			}
+			
+			//Adiciona na class
+			$card = new Cards($nome, $descricao, $imagem, $maisDetail, $maisComic, $maisWiki);
+			
+			array_push($cardss, $card);
 		}
 		
-		//print_r ($arr);
-
-		//foreach($json->data->results as $itens)
-		//{
-		//	echo "<img src=" . $itens->thumbnail->path . "." . $itens->thumbnail->extension . " float:right width='150px' height='200px' id='centro'>";
-		//	echo "<span>" . $itens->name . "</span>";
-		//}
+		return $cardss;
 	}
+}
 ?>
-
-
