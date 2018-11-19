@@ -14,7 +14,7 @@ require("include/pesquisaMarvel.php");
 		<link rel="stylesheet" href="public/css/bootstrap.min.css">
 		<link rel="stylesheet" href="public/css/pesquisar.css">
 		<link rel="stylesheet" href="public/css/w3.css">
-		<link rel="stylesheet" href="public/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>				
 	<br>
 	<title>Teste Innovare</title>
@@ -59,7 +59,7 @@ require("include/pesquisaMarvel.php");
 					<?php if (!empty($card->maisDetail) or !empty($card->maisComic) or !empty($card->maisWiki)) { ?> 
 						
 					<div class="w3-dropdown-hover w3-mobile">
-						<button class="w3-button">mais... <i class="fa fa-caret-down"></i></button>
+						<button class="w3-button">mais...<i class="fa fa-caret-down"></i></button>
 							<div class="w3-dropdown-content w3-bar-block w3-dark-white">
 								<?php if (!empty($card->maisDetail)) { ?> 
 								<a href="<?php echo $card->maisDetail ?>" target="_blank" class="w3-bar-item w3-button w3-mobile">Detail</a>
