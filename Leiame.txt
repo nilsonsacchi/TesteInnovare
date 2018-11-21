@@ -1,6 +1,7 @@
 - O teste foi criado em htdocs do xampp
 - Pagina Index.php fica xampp\htdocs\innovare
 - Pasta include fica xampp\htdocs\innovare\include
+- Icone fica na pasta index 
 
 arquivos css
 Pasta include fica xampp\htdocs\innovare\public

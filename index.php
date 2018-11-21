@@ -15,6 +15,8 @@ require("include/pesquisaMarvel.php");
 		<link rel="stylesheet" href="public/css/pesquisar.css">
 		<link rel="stylesheet" href="public/css/w3.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+		<link rel="icon" type="imagem/png" href="icon2.png" />
 	</head>				
 	<br>
 	<title>Teste Innovare</title>
@@ -22,8 +24,7 @@ require("include/pesquisaMarvel.php");
 	<br>
 	<br>
 	<div class="cabecalho">
-		<h1>Pesquisa de personagens</h1>
-		<br>	
+		<h2>Pesquisa de personagens</h2>
 		<br>	
 		<br>	
 	</div>

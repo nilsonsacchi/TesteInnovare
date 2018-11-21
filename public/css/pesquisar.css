@@ -69,7 +69,8 @@ input::-webkit-input-placeholder {
 .cabecalho{
 	display: flex;
 	justify-content: center;	
-	font-style: oblique;
+	--font-style: oblique;
+	font-style: normal;
 }
 
 .pesquisar{
