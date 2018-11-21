@@ -39,7 +39,7 @@ require("include/pesquisaMarvel.php");
 	<br>
 		<div>
 		<?php
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$conteudo = $_POST['consulta'];
 			$cards = array();
 			$cards = Marvel::getMarvel($conteudo);
